@@ -1,0 +1,6 @@
+@import url('./main.css');
+@import url('./Components/VideoSlider.css');
+
+body{
+    background-color: black;
+}
