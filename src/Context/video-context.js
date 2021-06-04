@@ -1,24 +1,14 @@
-
-import {createContext,useState,useContext} from 'react'
-import {videoData} from '../Data/Data'
-
+import { createContext, useReducer, useContext } from "react";
+import { initialState, videoReducer } from "../Reducer";
 
 export const VideoContext = createContext();
 
+export const VideoProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(videoReducer, initialState);
 
-export const VideoProvider =({children})=>{
-
-  const [videoList,setVideoList] = useState(videoData)
-
-
-    return(
-
-        <VideoContext.Provider value={{videoList,setVideoList}}>
-            {children}
-        </VideoContext.Provider>
-    )
-}
-
-export const useVideoData =()=>{
-    return useContext(VideoContext)
-}
+  return (
+    <VideoContext.Provider value={{ state, dispatch }}>
+      {children}
+    </VideoContext.Provider>
+  );
+};

@@ -1,0 +1,14 @@
+
+.auth-wrapper{
+    min-height: 100vh;
+}
+
+.auth-form{
+    width: 35vw;
+}
+
+.form-input{
+    padding: .8rem;
+    color: var(--gray);
+    border: 1px solid var(--less-light-border);
+}
