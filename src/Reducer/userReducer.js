@@ -1,62 +1,114 @@
-import {v4} from 'uuid'
+import { v4 } from "uuid";
 
-export const userReducer = (state,{type,payload}) => {
+export const userReducer = (state, { type, payload }) => {
+  switch (type) {
+    case "SHOW LOADING":
+      return { ...state, loading: true };
+    case "HIDE LOADING":
+      return { ...state, loading: false };
 
-   switch (type) {
-        case "ADD TO LIKED VIDEOS":
-           return {...state,likedVideos:state.likedVideos.concat(payload)}
+    case "GET HISTORY VIDEOS":
+      return { ...state, history: payload };
+    case "GET LIKED VIDEOS":
+      return { ...state, history: payload };
 
-        case "REMOVE FROM LIKED VIDEOS":
-           return {...state,likedVideos:state.likedVideos.filter((item)=>item.id !== payload.id)}
+    case "ADD TO LIKED VIDEOS":
+      return { ...state, likedVideos: state.likedVideos.concat(payload) };
 
-        case "ADD TO HISTORY":
-           return {...state,history:state.history.concat(payload)}
+    case "REMOVE FROM LIKED VIDEOS":
+      return {
+        ...state,
+        likedVideos: state.likedVideos.filter(
+          ({ video }) => video !== payload.video
+        ),
+      };
 
-        case "REMOVE FROM HISTORY":
-           return {...state,history:state.history.filter((item)=>item.id !== payload.id)}
-   
-        case "ADD TO WATCH LATER":
-           return {...state,watchLater:state.watchLater.concat(payload)}
+    case "ADD TO HISTORY":
+      return { ...state, history: state.history.concat(payload) };
 
-        case "REMOVE FROM WATCH LATER":
-           return {...state,watchLater:state.watchLater.filter((item)=>item.id !== payload.id)}
+    case "REMOVE FROM HISTORY":
+      return {
+        ...state,
+        history: state.history.filter(({ video }) => video !== payload.video),
+      };
 
-        case "ADD PLAYLIST":
-           return {...state,playLists:state.playLists.concat({id:v4(),name:payload,videos:[]})}
+    case "ADD TO WATCH LATER":
+      return { ...state, watchLater: state.watchLater.concat(payload) };
 
-        case "REMOVE PLAYLIST":
-           return {...state,playLists:state.playLists.filter((playList)=>playList.id !== payload.id)}
+    case "REMOVE FROM WATCH LATER":
+      return {
+        ...state,
+        watchLater: state.watchLater.filter((item) => item.id !== payload.id),
+      };
 
-       case "UPDATE PLAYLIST":
-         return {...state,playLists:state.playLists.map((playList)=>
-            playList.id===payload.id?{...playList,name:payload.newName}:playList      
-         )}
+    case "ADD PLAYLIST":
+      return {
+        ...state,
+        playLists: state.playLists.concat({
+          id: v4(),
+          name: payload,
+          videos: [],
+        }),
+      };
 
-       case "ADD TO PLAYLIST":
-         return {...state,playLists:state.playLists.map((playList)=>
-            playList.id===payload.id?{...playList,videos:playList.videos.concat(payload.video)}:playList      
-         )}
+    case "REMOVE PLAYLIST":
+      return {
+        ...state,
+        playLists: state.playLists.filter(
+          (playList) => playList.id !== payload.id
+        ),
+      };
 
-       case "REMOVE FROM PLAYLIST":
-         return {...state,playLists:state.playLists.map((playList)=>
-            playList.id===payload.id?{...playList,videos:playList.videos.filter((video)=>video.id!==payload.video.id)}:playList      
-         )}
+    case "UPDATE PLAYLIST":
+      return {
+        ...state,
+        playLists: state.playLists.map((playList) =>
+          playList.id === payload.id
+            ? { ...playList, name: payload.newName }
+            : playList
+        ),
+      };
 
-     
-       default:
-           break;
-   }
-}
+    case "ADD TO PLAYLIST":
+      return {
+        ...state,
+        playLists: state.playLists.map((playList) =>
+          playList.id === payload.id
+            ? { ...playList, videos: playList.videos.concat(payload.video) }
+            : playList
+        ),
+      };
 
-export const initialState={
-    likedVideos:[],
-    history:[],
-    watchLater:[],
-    playLists:[
-       {
-          id:v4(),
-          name:'Initial List',
-          videos:[]
-       }
-    ]
-}
+    case "REMOVE FROM PLAYLIST":
+      return {
+        ...state,
+        playLists: state.playLists.map((playList) =>
+          playList.id === payload.id
+            ? {
+                ...playList,
+                videos: playList.videos.filter(
+                  (video) => video.id !== payload.video.id
+                ),
+              }
+            : playList
+        ),
+      };
+
+    default:
+      break;
+  }
+};
+
+export const initialState = {
+  loading: false,
+  likedVideos: [],
+  history: [],
+  watchLater: [],
+  playLists: [
+    {
+      id: v4(),
+      name: "Initial List",
+      videos: [],
+    },
+  ],
+};

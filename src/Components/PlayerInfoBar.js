@@ -3,15 +3,28 @@ import ThumbUpOutlinedIcon from "@material-ui/icons/ThumbUpOutlined";
 import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
 import TurnedInNotIcon from "@material-ui/icons/TurnedInNot";
 import TurnedInIcon from "@material-ui/icons/TurnedIn";
+import { useActions } from "../Hook";
+import { useLocation } from "react-router-dom";
 
-export const PlayerInfoBar = ({
-  currentVideo,
-  likeHandeller,
-  watchHandeller,
-  playListHandeller,
-}) => {
-  function isLiked() {}
-  function isInWatchLater() {}
+export const PlayerInfoBar = ({ currentVideo }) => {
+  const { addToLikedVideos, isLiked, isInWatchLater, removeFromLikedVideos } =
+    useActions();
+
+  const location = useLocation();
+  const path = location.pathname + location.search;
+
+  function likeHandeller(_id) {
+    if (!isLiked(_id)) {
+      addToLikedVideos(_id, path);
+    } else {
+      removeFromLikedVideos(_id, path);
+    }
+  }
+
+  function watchHandeller() {}
+
+  function playListHandeller() {}
+
   return (
     <div className="flex-row">
       <div className="flex-col-lg-10 flex-col-md-10">
@@ -21,8 +34,8 @@ export const PlayerInfoBar = ({
       </div>
       <div className="flex-col-lg-2 flex-col-md-2 center-vertically">
         <div className="video-buttons">
-          <div onClick={likeHandeller}>
-            {!isLiked() ? (
+          <div onClick={() => likeHandeller(currentVideo._id)}>
+            {!isLiked(currentVideo._id) ? (
               <ThumbUpOutlinedIcon fontSize="large" />
             ) : (
               <ThumbUpIcon fontSize="large" />

@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../Hook";
+import { useNavigate } from "react-router-dom";
 
 export const NavBar = () => {
-  const { userInfo } = useAuth();
+  const { userInfo, logout } = useAuth();
+  const navigate = useNavigate();
   return (
     <header>
       <div className="container">
@@ -18,17 +20,25 @@ export const NavBar = () => {
               <Link to="/">
                 <li className="nav-link">Home</li>
               </Link>
-              <Link to="/videos">
-                <li className="nav-link">Videos</li>
+              <Link to="/explore">
+                <li className="nav-link">Explore</li>
+              </Link>
+              <Link to="/library">
+                <li className="nav-link">Library</li>
+              </Link>
+              <Link to="/profile">
+                <li className="nav-link">Profile</li>
               </Link>
             </nav>
           </div>
           <div className="flex-col-lg-1 flex align-center">
-            <Link to={userInfo ? "/user" : "/login"}>
-              <li className="nav-link">
-                {userInfo ? `${userInfo.name}` : "login"}
-              </li>
-            </Link>
+            <li className="nav-link">
+              {userInfo ? (
+                <span onClick={() => logout()}>Logout</span>
+              ) : (
+                <span onClick={() => navigate("/login")}>Login</span>
+              )}
+            </li>
           </div>
         </div>
       </div>

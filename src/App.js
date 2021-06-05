@@ -1,14 +1,24 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import { Videos, Home, VideoDetail, Login, Signup, UserData } from "./View";
 import { NavBar } from "./Components";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { apiUrl } from "./Constants";
-import { useVideoData } from "./Hook";
+import { useAuth, useUserRelatedData, useVideoData } from "./Hook";
+import {
+  Explore,
+  Home,
+  VideoDetail,
+  Login,
+  Signup,
+  UserData,
+  Library,
+} from "./View";
 
 function App() {
   const { dispatch: videoDispatch, videos } = useVideoData();
+  const { dispatch: userDataDispatch } = useUserRelatedData();
+  const { userInfo } = useAuth();
   const [videoList, setVideoList] = useState([]);
 
   useEffect(() => {
@@ -24,6 +34,29 @@ function App() {
       }
     })();
   }, [videoDispatch]);
+
+  useEffect(() => {
+    if (userInfo) {
+      (async () => {
+        try {
+          const {
+            data: { data: user },
+          } = await axios.get(`${apiUrl}/${userInfo._id}/userdata`);
+          console.log(user);
+          userDataDispatch({
+            type: "GET HISTORY VIDEOS",
+            payload: user.historyVideos,
+          });
+          userDataDispatch({
+            type: "GET LIKED VIDEOS",
+            payload: user.likedVideos,
+          });
+        } catch (err) {
+          console.log(err);
+        }
+      })();
+    }
+  }, [userDataDispatch, userInfo]);
 
   useEffect(() => {
     if (videos) {
@@ -43,9 +76,12 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/user" element={<UserData />} />
+        <Route path="/library" element={<Library />} />
         <Route
-          path="/videos"
-          element={<Videos setVideoList={setVideoList} videoList={videoList} />}
+          path="/explore"
+          element={
+            <Explore setVideoList={setVideoList} videoList={videoList} />
+          }
         />
         <Route path="/videos/:videoId" element={<VideoDetail />} />
       </Routes>
