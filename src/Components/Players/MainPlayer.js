@@ -3,7 +3,7 @@ import { useActions } from "../../Hook";
 // import { useLocation } from "react-router-dom";
 
 export const MainPlayer = ({ currentVideo }) => {
-  const { addToHistory, isinHistory } = useActions();
+  const { addToHistory, isinHistory, removeFromHistory } = useActions();
 
   // const location = useLocation();
   // const path = location.search + location.pathname;
@@ -11,6 +11,9 @@ export const MainPlayer = ({ currentVideo }) => {
   const historyHandler = (_id) => {
     if (!isinHistory(_id)) {
       addToHistory(_id);
+    }
+    if (isinHistory(_id)) {
+      removeFromHistory(_id);
     }
   };
 

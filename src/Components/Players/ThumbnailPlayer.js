@@ -4,7 +4,10 @@ import { useNavigate } from "react-router-dom";
 const ThumbnailPlayer = ({ video, handlePause, handlePlay }) => {
   const navigate = useNavigate();
   return (
-    <div className="flex-col-lg-4 flex-col-md-6 container video-card">
+    <div
+      className="flex-col-lg-4 flex-col-md-6 container video-card"
+      key={video._id}
+    >
       <div className="player-wrapper hover-player">
         <ReactPlayer
           className="react-player"
