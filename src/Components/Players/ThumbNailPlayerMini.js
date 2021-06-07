@@ -9,8 +9,8 @@ export const ThumbNailPlayerMini = ({ item }) => {
       <div className="player-wrapper hover-player-mini">
         <ReactPlayer
           className="react-player"
-          url={`https://www.youtube.com/watch?v=${item.video.youtubeId}`}
-          light={!item.video.playing}
+          url={`https://www.youtube.com/watch?v=${item.video?.youtubeId}`}
+          light={!item.video?.playing}
           width="100%"
         />
       </div>
@@ -19,7 +19,7 @@ export const ThumbNailPlayerMini = ({ item }) => {
           onClick={() => navigate(`/videos/${item.video._id}`)}
           className="pointer"
         >
-          {item.video.name}
+          {item.video?.name}
         </h5>
       </div>
     </div>

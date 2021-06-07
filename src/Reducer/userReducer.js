@@ -9,8 +9,12 @@ export const userReducer = (state, { type, payload }) => {
 
     case "GET HISTORY VIDEOS":
       return { ...state, history: payload };
+
     case "GET LIKED VIDEOS":
       return { ...state, likedVideos: payload };
+
+    case "GET WATCHLATER VIDEOS":
+      return { ...state, watchLater: payload };
 
     case "ADD TO LIKED VIDEOS":
       return { ...state, likedVideos: state.likedVideos.concat(payload) };
@@ -38,7 +42,9 @@ export const userReducer = (state, { type, payload }) => {
     case "REMOVE FROM WATCH LATER":
       return {
         ...state,
-        watchLater: state.watchLater.filter((item) => item.id !== payload.id),
+        watchLater: state.watchLater.filter(
+          ({ video }) => video !== payload.video
+        ),
       };
 
     case "ADD PLAYLIST":

@@ -1,13 +1,9 @@
 import ReactPlayer from "react-player/youtube";
 import { PlayerInfoBar } from "..";
 import { useActions } from "../../Hook";
-// import { useLocation } from "react-router-dom";
 
 export const MainPlayer = ({ currentVideo, playListHandeller }) => {
   const { addToHistory, isinHistory } = useActions();
-
-  // const location = useLocation();
-  // const path = location.search + location.pathname;
 
   const historyHandler = (_id) => {
     if (!isinHistory(_id)) {

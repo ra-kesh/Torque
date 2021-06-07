@@ -52,7 +52,7 @@ const Library = () => {
               .reverse()
               .slice(0, 4)
               .map((item) => (
-                <ThumbNailPlayerMini item={item} key={item.video._id} />
+                <ThumbNailPlayerMini item={item} key={item.video?._id} />
               ))}
           </div>
         </div>
@@ -66,7 +66,7 @@ const Library = () => {
               .reverse()
               .slice(0, 4)
               .map((item) => (
-                <ThumbNailPlayerMini item={item} key={item.video._id} />
+                <ThumbNailPlayerMini item={item} key={item.video?._id} />
               ))}
           </div>
         </div>

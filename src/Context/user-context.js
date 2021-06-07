@@ -27,6 +27,10 @@ export const UserProvider = ({ children }) => {
             type: "GET LIKED VIDEOS",
             payload: user.likedVideos,
           });
+          dispatch({
+            type: "GET WATCHLATER VIDEOS",
+            payload: user.watchLaterVideos,
+          });
           dispatch({ type: "HIDE LOADING" });
         } catch (err) {
           console.log(err);

@@ -7,8 +7,14 @@ import { useActions } from "../Hook";
 import { useLocation } from "react-router-dom";
 
 export const PlayerInfoBar = ({ currentVideo }) => {
-  const { addToLikedVideos, isLiked, isInWatchLater, removeFromLikedVideos } =
-    useActions();
+  const {
+    addToLikedVideos,
+    isLiked,
+    isInWatchLater,
+    removeFromLikedVideos,
+    addToWatchLater,
+    removeFromWatchLater,
+  } = useActions();
 
   const location = useLocation();
   const path = location.pathname + location.search;
@@ -21,7 +27,13 @@ export const PlayerInfoBar = ({ currentVideo }) => {
     }
   }
 
-  function watchHandeller() {}
+  function watchHandeller(_id) {
+    if (!isInWatchLater(_id)) {
+      addToWatchLater(_id, path);
+    } else {
+      removeFromWatchLater(_id, path);
+    }
+  }
 
   function playListHandeller() {}
 
@@ -41,8 +53,8 @@ export const PlayerInfoBar = ({ currentVideo }) => {
               <ThumbUpIcon fontSize="large" />
             )}
           </div>
-          <div onClick={watchHandeller}>
-            {!isInWatchLater() ? (
+          <div onClick={() => watchHandeller(currentVideo._id)}>
+            {!isInWatchLater(currentVideo._id) ? (
               <TurnedInNotIcon fontSize="large" />
             ) : (
               <TurnedInIcon fontSize="large" />

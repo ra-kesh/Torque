@@ -9,6 +9,7 @@ export const useActions = () => {
     dispatch: userDataDispatch,
     history,
     likedVideos,
+    watchLater,
   } = useUserRelatedData();
   const navigate = useNavigate();
 
@@ -19,7 +20,7 @@ export const useActions = () => {
     return likedVideos.some(({ video }) => video === id);
   };
   const isInWatchLater = (id) => {
-    // return likedVideos.some(({ video }) => video === id);
+    return watchLater.some(({ video }) => video === id);
   };
 
   const addToHistory = async (_id) => {
@@ -68,6 +69,33 @@ export const useActions = () => {
       },
     });
   };
+  const addToWatchLater = async (_id, path) => {
+    if (userInfo) {
+      const {
+        data: { success },
+      } = await axios.post(`${apiUrl}/watchlater/${userInfo._id}`, {
+        video: {
+          _id,
+        },
+      });
+      console.log(success);
+      if (success) {
+        userDataDispatch({
+          type: "ADD TO WATCH LATER",
+          payload: {
+            video: _id,
+          },
+        });
+      }
+      return;
+    }
+    navigate("/login", {
+      state: {
+        from: path,
+        message: "To add to watch later a video you need to login first Bro",
+      },
+    });
+  };
 
   const removeFromHistory = async (_id) => {
     if (userInfo) {
@@ -101,8 +129,25 @@ export const useActions = () => {
       }
     }
   };
+  const removeFromWatchLater = async (_id) => {
+    if (userInfo) {
+      const {
+        data: { success },
+      } = await axios.delete(`${apiUrl}/watchlater/${userInfo._id}/${_id}`);
+
+      if (success) {
+        userDataDispatch({
+          type: "REMOVE FROM WATCH LATER",
+          payload: {
+            video: _id,
+          },
+        });
+      }
+    }
+  };
 
   return {
+    addToWatchLater,
     isInWatchLater,
     isinHistory,
     isLiked,
@@ -110,5 +155,6 @@ export const useActions = () => {
     addToLikedVideos,
     removeFromHistory,
     removeFromLikedVideos,
+    removeFromWatchLater,
   };
 };

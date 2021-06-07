@@ -26,8 +26,7 @@ const VideoDetail = () => {
     })();
   }, [videoId]);
 
-  const { dispatch, playLists, loading, likedVideos, history } =
-    useUserRelatedData();
+  const { dispatch, playLists, loading } = useUserRelatedData();
 
   function playListHandeller() {
     setShowPlayList((showPlayList) => !showPlayList);
@@ -65,10 +64,6 @@ const VideoDetail = () => {
   // function durationHandeller(state){
   //   setDuration(state)
   // }
-
-  console.log(loading);
-  console.log(likedVideos);
-  console.log(history);
 
   return (
     <div className="container">
