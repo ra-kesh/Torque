@@ -10,7 +10,7 @@ export const userReducer = (state, { type, payload }) => {
     case "GET HISTORY VIDEOS":
       return { ...state, history: payload };
     case "GET LIKED VIDEOS":
-      return { ...state, history: payload };
+      return { ...state, likedVideos: payload };
 
     case "ADD TO LIKED VIDEOS":
       return { ...state, likedVideos: state.likedVideos.concat(payload) };

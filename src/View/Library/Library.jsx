@@ -16,7 +16,7 @@ const Library = () => {
           const {
             data: { data: historyVideosList },
           } = await axios.get(`${apiUrl}/history/${userInfo._id}`);
-          setHistory(historyVideosList.historyVideos);
+          setHistory(historyVideosList?.historyVideos || []);
         } catch (error) {
           console.log(error);
         }
@@ -31,14 +31,13 @@ const Library = () => {
           const {
             data: { data: likedVideosList },
           } = await axios.get(`${apiUrl}/likedvideos/${userInfo._id}`);
-          setLikedVideos(likedVideosList.likedVideos);
+          setLikedVideos(likedVideosList?.likedVideos || []);
         } catch (error) {
           console.log(error);
         }
       })();
     }
   }, [userInfo]);
-  console.log(history);
 
   return (
     <div className="container">
@@ -53,7 +52,7 @@ const Library = () => {
               .reverse()
               .slice(0, 4)
               .map((item) => (
-                <ThumbNailPlayerMini item={item} />
+                <ThumbNailPlayerMini item={item} key={item.video._id} />
               ))}
           </div>
         </div>
@@ -67,7 +66,7 @@ const Library = () => {
               .reverse()
               .slice(0, 4)
               .map((item) => (
-                <ThumbNailPlayerMini item={item} />
+                <ThumbNailPlayerMini item={item} key={item.video._id} />
               ))}
           </div>
         </div>

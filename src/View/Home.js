@@ -1,7 +1,7 @@
 import React from "react";
-import { VideoSlider } from "../Components";
+// import { VideoSlider } from "../Components";
 // import { useVideoData } from "../Hook";
-import { sliderData } from "../Data/Data";
+// import { sliderData } from "../Data/Data";
 
 const Home = () => {
   //   const { videoList } = useVideoData();

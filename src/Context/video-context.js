@@ -14,7 +14,6 @@ export const VideoProvider = ({ children }) => {
         const {
           data: { data: videos },
         } = await axios.get(`${apiUrl}/videos`);
-        console.log(videos);
         dispatch({ type: "GET VIDEOS", payload: videos });
       } catch (err) {
         console.log(err);

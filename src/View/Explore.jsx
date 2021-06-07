@@ -44,6 +44,7 @@ function Explore({ setVideoList, videoList }) {
       <div className="flex-row">
         {videoList.map((video) => (
           <ThumbnailPlayer
+            key={video._id}
             video={video}
             handlePause={handlePause}
             handlePlay={handlePlay}

@@ -15,10 +15,10 @@ export const UserProvider = ({ children }) => {
     if (userInfo) {
       (async () => {
         try {
+          dispatch({ type: "SHOW LOADING" });
           const {
             data: { data: user },
           } = await axios.get(`${apiUrl}/userdata/${userInfo._id}`);
-          console.log(user);
           dispatch({
             type: "GET HISTORY VIDEOS",
             payload: user.historyVideos,
@@ -27,6 +27,7 @@ export const UserProvider = ({ children }) => {
             type: "GET LIKED VIDEOS",
             payload: user.likedVideos,
           });
+          dispatch({ type: "HIDE LOADING" });
         } catch (err) {
           console.log(err);
         }

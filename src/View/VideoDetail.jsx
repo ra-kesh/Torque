@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { PlayList, MainPlayer, PlayerInfoBar } from "../Components";
+import { PlayList, MainPlayer } from "../Components";
 import { useUserRelatedData } from "../Hook/useUserRelatedData";
 import { useState, useEffect } from "react";
 // import { useVideoData } from "../Hook";
@@ -26,38 +26,8 @@ const VideoDetail = () => {
     })();
   }, [videoId]);
 
-  const { dispatch, playLists } = useUserRelatedData();
-
-  // function isLiked() {
-  //   if (likedVideos.length > 0) {
-  //     // return likedVideos.some((item) => item.id === video.id);
-  //   }
-  //   return false;
-  // }
-  // function isInWatchLater() {
-  //   if (watchLater.length > 0) {
-  //     // return watchLater.some((item) => item.id === video.id);
-  //   }
-  //   return false;
-  // }
-
-  // function watchHandeller(e) {
-  //   if (!isInWatchLater()) {
-  //     // dispatch({ type: "ADD TO WATCH LATER", payload: video });
-  //   } else {
-  //     // dispatch({ type: "REMOVE FROM WATCH LATER", payload: video });
-  //   }
-  //   e.preventDefault();
-  // }
-
-  // function likeHandeller(e) {
-  //   if (!isLiked()) {
-  //     // dispatch({ type: "ADD TO LIKED VIDEOS", payload: video });
-  //   } else {
-  //     // dispatch({ type: "REMOVE FROM LIKED VIDEOS", payload: video });
-  //   }
-  //   e.preventDefault();
-  // }
+  const { dispatch, playLists, loading, likedVideos, history } =
+    useUserRelatedData();
 
   function playListHandeller() {
     setShowPlayList((showPlayList) => !showPlayList);
@@ -96,29 +66,37 @@ const VideoDetail = () => {
   //   setDuration(state)
   // }
 
+  console.log(loading);
+  console.log(likedVideos);
+  console.log(history);
+
   return (
     <div className="container">
       <div className="flex-row">
-        <div className="flex-col-lg-12">
-          <div className="container">
-            <MainPlayer currentVideo={currentVideo} />
+        {loading && (
+          <div className="flex-col-lg-12" style={{ color: "white" }}>
+            loading
           </div>
-          <div className="container">
-            <PlayerInfoBar
-              currentVideo={currentVideo}
-              playListHandeller={playListHandeller}
-            />
-          </div>
-          <div className="container">
-            {showPlayList && (
-              <PlayList
-                playLists={playLists}
-                dispatch={dispatch}
-                video={currentVideo}
+        )}
+        {!loading && (
+          <div className="flex-col-lg-12">
+            <div className="container">
+              <MainPlayer
+                currentVideo={currentVideo}
+                playListHandeller={playListHandeller}
               />
-            )}
+            </div>
+            <div className="container">
+              {showPlayList && (
+                <PlayList
+                  playLists={playLists}
+                  dispatch={dispatch}
+                  video={currentVideo}
+                />
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
