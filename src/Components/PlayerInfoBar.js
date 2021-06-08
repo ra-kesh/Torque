@@ -19,22 +19,6 @@ export const PlayerInfoBar = ({ currentVideo }) => {
   const location = useLocation();
   const path = location.pathname + location.search;
 
-  function likeHandeller(_id) {
-    if (!isLiked(_id)) {
-      addToLikedVideos(_id, path);
-    } else {
-      removeFromLikedVideos(_id, path);
-    }
-  }
-
-  function watchHandeller(_id) {
-    if (!isInWatchLater(_id)) {
-      addToWatchLater(_id, path);
-    } else {
-      removeFromWatchLater(_id, path);
-    }
-  }
-
   function playListHandeller() {}
 
   return (
@@ -46,18 +30,30 @@ export const PlayerInfoBar = ({ currentVideo }) => {
       </div>
       <div className="flex-col-lg-2 flex-col-md-2 center-vertically">
         <div className="video-buttons">
-          <div onClick={() => likeHandeller(currentVideo._id)}>
+          <div>
             {!isLiked(currentVideo._id) ? (
-              <ThumbUpOutlinedIcon fontSize="large" />
+              <ThumbUpOutlinedIcon
+                fontSize="large"
+                onClick={() => addToLikedVideos(currentVideo._id, path)}
+              />
             ) : (
-              <ThumbUpIcon fontSize="large" />
+              <ThumbUpIcon
+                fontSize="large"
+                onClick={() => removeFromLikedVideos(currentVideo._id)}
+              />
             )}
           </div>
-          <div onClick={() => watchHandeller(currentVideo._id)}>
+          <div>
             {!isInWatchLater(currentVideo._id) ? (
-              <TurnedInNotIcon fontSize="large" />
+              <TurnedInNotIcon
+                fontSize="large"
+                onClick={() => addToWatchLater(currentVideo._id, path)}
+              />
             ) : (
-              <TurnedInIcon fontSize="large" />
+              <TurnedInIcon
+                fontSize="large"
+                onClick={() => removeFromWatchLater(currentVideo._id)}
+              />
             )}
           </div>
           <div onClick={playListHandeller}>

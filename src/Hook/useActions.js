@@ -43,7 +43,7 @@ export const useActions = () => {
     }
   };
   const addToLikedVideos = async (_id, path) => {
-    if (userInfo) {
+    if (userInfo && !isLiked(_id)) {
       const {
         data: { success },
       } = await axios.post(`${apiUrl}/likedvideos/${userInfo._id}`, {
@@ -70,7 +70,7 @@ export const useActions = () => {
     });
   };
   const addToWatchLater = async (_id, path) => {
-    if (userInfo) {
+    if (userInfo && !isInWatchLater(_id)) {
       const {
         data: { success },
       } = await axios.post(`${apiUrl}/watchlater/${userInfo._id}`, {
