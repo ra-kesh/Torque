@@ -26,7 +26,8 @@ const VideoDetail = () => {
     })();
   }, [videoId]);
 
-  const { dispatch, playLists, loading } = useUserRelatedData();
+  const { dispatch, playLists, loading, unfinishedVideos } =
+    useUserRelatedData();
 
   function playListHandeller() {
     setShowPlayList((showPlayList) => !showPlayList);
@@ -64,6 +65,8 @@ const VideoDetail = () => {
   // function durationHandeller(state){
   //   setDuration(state)
   // }
+
+  console.log(unfinishedVideos);
 
   return (
     <div className="container">

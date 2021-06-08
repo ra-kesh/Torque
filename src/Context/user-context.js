@@ -31,6 +31,10 @@ export const UserProvider = ({ children }) => {
             type: "GET WATCHLATER VIDEOS",
             payload: user.watchLaterVideos,
           });
+          dispatch({
+            type: "GET UNFINISHED VIDEOS",
+            payload: user.unfinishedVideos,
+          });
           dispatch({ type: "HIDE LOADING" });
         } catch (err) {
           console.log(err);

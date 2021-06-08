@@ -16,6 +16,38 @@ export const userReducer = (state, { type, payload }) => {
     case "GET WATCHLATER VIDEOS":
       return { ...state, watchLater: payload };
 
+    case "GET UNFINISHED VIDEOS":
+      return { ...state, unfinishedVideos: payload };
+
+    case "ADD TO UNFINISHED VIDEOS":
+      return {
+        ...state,
+        unfinishedVideos: state.unfinishedVideos.concat(payload),
+      };
+
+    case "REMOVE FROM UNFINISHED VIDEOS":
+      return {
+        ...state,
+        unfinishedVideos: state.unfinishedVideos.filter(
+          ({ video }) => video !== payload.video
+        ),
+      };
+
+    case "UPDATE UNFINISHED VIDEOS":
+      return {
+        ...state,
+        unfinishedVideos: state.unfinishedVideos.map((item) => {
+          if (item.video === payload.video) {
+            return {
+              ...item,
+              remainingTime: payload.remainingTime,
+              elapsedTime: payload.elapsedTime,
+            };
+          }
+          return item;
+        }),
+      };
+
     case "ADD TO LIKED VIDEOS":
       return { ...state, likedVideos: state.likedVideos.concat(payload) };
 
@@ -110,6 +142,7 @@ export const initialState = {
   likedVideos: [],
   history: [],
   watchLater: [],
+  unfinishedVideos: [],
   playLists: [
     {
       id: v4(),

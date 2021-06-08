@@ -10,17 +10,21 @@ export const useActions = () => {
     history,
     likedVideos,
     watchLater,
+    unfinishedVideos,
   } = useUserRelatedData();
   const navigate = useNavigate();
 
   const isinHistory = (id) => {
-    return history.some(({ video }) => video === id);
+    return history?.some(({ video }) => video === id);
   };
   const isLiked = (id) => {
-    return likedVideos.some(({ video }) => video === id);
+    return likedVideos?.some(({ video }) => video === id);
   };
   const isInWatchLater = (id) => {
-    return watchLater.some(({ video }) => video === id);
+    return watchLater?.some(({ video }) => video === id);
+  };
+  const isInUnfinishedVideos = (id) => {
+    return unfinishedVideos?.some(({ video }) => video === id);
   };
 
   const addToHistory = async (_id) => {
@@ -42,6 +46,50 @@ export const useActions = () => {
       }
     }
   };
+  const addToUnfinishedVideos = async (_id, duration, played) => {
+    if (userInfo) {
+      const {
+        data: { success },
+      } = await axios.post(`${apiUrl}/unfinished/${userInfo._id}`, {
+        video: {
+          _id,
+        },
+        remainingTime: Math.floor((duration * (1 - played)) / 60),
+        elapsedTime: Math.floor((duration * played) / 60),
+      });
+      if (success) {
+        userDataDispatch({
+          type: "ADD TO UNFINISHED VIDEOS",
+          payload: {
+            video: _id,
+          },
+        });
+      }
+    }
+  };
+
+  const updateUnfinishedVideos = async (_id, duration, played) => {
+    if (userInfo) {
+      const {
+        data: { success },
+      } = await axios.post(`${apiUrl}/unfinished/${userInfo._id}/${_id}`, {
+        remainingTime: Math.floor((duration * (1 - played)) / 60),
+        elapsedTime: Math.floor((duration * played) / 60),
+      });
+
+      if (success) {
+        userDataDispatch({
+          type: "UPDATE UNFINISHED VIDEOS",
+          payload: {
+            video: _id,
+            remainingTime: Math.floor((duration * (1 - played)) / 60),
+            elapsedTime: Math.floor((duration * played) / 60),
+          },
+        });
+      }
+    }
+  };
+
   const addToLikedVideos = async (_id, path) => {
     if (userInfo && !isLiked(_id)) {
       const {
@@ -69,6 +117,7 @@ export const useActions = () => {
       },
     });
   };
+
   const addToWatchLater = async (_id, path) => {
     if (userInfo && !isInWatchLater(_id)) {
       const {
@@ -145,6 +194,22 @@ export const useActions = () => {
       }
     }
   };
+  const removeFromUnfinshedVideos = async (_id) => {
+    if (userInfo) {
+      const {
+        data: { success },
+      } = await axios.delete(`${apiUrl}/unfinished/${userInfo._id}/${_id}`);
+
+      if (success) {
+        userDataDispatch({
+          type: "REMOVE FROM UNFINISHED VIDEOS",
+          payload: {
+            video: _id,
+          },
+        });
+      }
+    }
+  };
 
   return {
     addToWatchLater,
@@ -156,5 +221,9 @@ export const useActions = () => {
     removeFromHistory,
     removeFromLikedVideos,
     removeFromWatchLater,
+    addToUnfinishedVideos,
+    removeFromUnfinshedVideos,
+    isInUnfinishedVideos,
+    updateUnfinishedVideos,
   };
 };
