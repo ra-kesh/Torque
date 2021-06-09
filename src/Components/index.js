@@ -1,5 +1,5 @@
 import { NavBar } from "./NavBar";
-import { VideoSlider } from "./VideoSlider";
+import { VideoSlider } from "./Sliders/VideoSlider";
 import { PlayList } from "./PlayList";
 import { MainPlayer } from "./Players/MainPlayer";
 import { PlayerInfoBar } from "./PlayerInfoBar";

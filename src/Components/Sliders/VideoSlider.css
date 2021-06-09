@@ -2,6 +2,8 @@
 .slider{
     position: relative;
     height: 50vh;
+    margin-top: 2rem;
+
 }
 
 .slide {
@@ -9,7 +11,6 @@
     transition-duration: 1s ease;
     transform: translateX(120px);
     pointer-events: none;
-    /* height: 70vh; */
   }
   
   .slide.active {
@@ -22,11 +23,12 @@
   }
 
   .slider-player{
-      margin-top: -3.3rem;
-      overflow: hidden;
-      /* margin: auto; */
-      /* margin-left: -5rem; */
-     
+      margin-top: -3.5rem;
+      overflow: hidden;     
+  }
+
+  .slider-details{
+    padding: 5rem 2rem;
   }
 /* 
   .slider-container{

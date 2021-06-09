@@ -55,7 +55,7 @@ export const useActions = () => {
           _id,
         },
         remainingTime: Math.floor((duration * (1 - played)) / 60),
-        elapsedTime: Math.floor((duration * played) / 60),
+        elapsedTime: duration * played,
       });
       if (success) {
         userDataDispatch({
@@ -74,7 +74,7 @@ export const useActions = () => {
         data: { success },
       } = await axios.post(`${apiUrl}/unfinished/${userInfo._id}/${_id}`, {
         remainingTime: Math.floor((duration * (1 - played)) / 60),
-        elapsedTime: Math.floor((duration * played) / 60),
+        elapsedTime: duration * played,
       });
 
       if (success) {
@@ -83,7 +83,7 @@ export const useActions = () => {
           payload: {
             video: _id,
             remainingTime: Math.floor((duration * (1 - played)) / 60),
-            elapsedTime: Math.floor((duration * played) / 60),
+            elapsedTime: duration * played,
           },
         });
       }

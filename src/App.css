@@ -14,5 +14,27 @@
 
 
 
+.small-card-img{
+    width: 15rem;
+    position: relative;
 
+}
+
+.small-card-img img{
+    width: 100%;
+    height: 100%;
+}
+
+.small-card-desc{
+    color: gray;
+    padding: 0 1rem
+}
+
+.small-card-title{
+    font-size: 1.3rem;
+}
+
+.small-card-time{
+    font-size: 1rem;
+}
 

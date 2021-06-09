@@ -1,5 +1,5 @@
 @import url('./main.css');
-@import url('./Components/VideoSlider.css');
+@import url('./Components/Sliders/VideoSlider.css');
 @import url('./View/auth/login.css');
 @import url('./View/Library/library.css');
 @import url('./Components/Players/player.css');

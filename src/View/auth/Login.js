@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../Hook";
 
 const Login = () => {
@@ -7,11 +7,14 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const location = useLocation();
+  const path = location.state?.from;
+
   const { login } = useAuth();
 
   function submitHandeller(e) {
     e.preventDefault();
-    login(email, password);
+    login(email, password, path);
   }
   return (
     <div className="container">

@@ -2,6 +2,7 @@ import ReactPlayer from "react-player/youtube";
 import { PlayerInfoBar } from "..";
 import { useActions } from "../../Hook";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 export const MainPlayer = ({ currentVideo, playListHandeller }) => {
   const {
@@ -13,6 +14,9 @@ export const MainPlayer = ({ currentVideo, playListHandeller }) => {
     removeFromUnfinshedVideos,
   } = useActions();
   const [duration, setDuration] = useState(null);
+
+  const location = useLocation();
+  const elapsedTime = location.state?.elapsedTime;
 
   const historyHandler = (_id) => {
     if (!isinHistory(_id)) {
@@ -32,6 +36,12 @@ export const MainPlayer = ({ currentVideo, playListHandeller }) => {
     }
   };
 
+  function startTime() {
+    if (elapsedTime !== undefined) {
+      return Math.floor(elapsedTime);
+    } else return 0;
+  }
+
   return (
     <>
       <div className="detail-player">
@@ -44,6 +54,7 @@ export const MainPlayer = ({ currentVideo, playListHandeller }) => {
               playerVars: {
                 autoplay: 1,
                 mute: 1,
+                start: startTime(),
               },
             },
           }}
@@ -52,9 +63,6 @@ export const MainPlayer = ({ currentVideo, playListHandeller }) => {
           onStart={() => historyHandler(currentVideo._id)}
           onProgress={completeHandeller}
           onDuration={(state) => setDuration(state)}
-          // onProgress={completeHandeller}
-          // onDuration={(state) => setDuration(state)}
-          // onPause={()=>console.log(reactPlayer.getCurrentTime())}
         />
       </div>
       <div className="container">
