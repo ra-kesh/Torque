@@ -8,6 +8,7 @@ const Library = () => {
   const { userInfo } = useAuth();
   const [history, setHistory] = useState([]);
   const [likedVideos, setLikedVideos] = useState([]);
+  const [watchLater, setWatchlater] = useState([]);
 
   useEffect(() => {
     if (userInfo) {
@@ -39,6 +40,21 @@ const Library = () => {
     }
   }, [userInfo]);
 
+  useEffect(() => {
+    if (userInfo) {
+      (async () => {
+        try {
+          const {
+            data: { data: watchLaterVideosList },
+          } = await axios.get(`${apiUrl}/watchlater/${userInfo._id}`);
+          setWatchlater(watchLaterVideosList?.watchLaterVideos || []);
+        } catch (error) {
+          console.log(error);
+        }
+      })();
+    }
+  }, [userInfo]);
+
   return (
     <div className="container">
       <div className="flex-row lib-wrapper">
@@ -63,6 +79,20 @@ const Library = () => {
           </div>
           <div className="lib-section flex-row">
             {[...likedVideos]
+              .reverse()
+              .slice(0, 4)
+              .map((item) => (
+                <ThumbNailPlayerMini item={item} key={item.video?._id} />
+              ))}
+          </div>
+        </div>
+        <div className="flex-col-12">
+          <div className="lib-bar flex space-between m-bottom-two">
+            <div className="lib-menu">Watch Later</div>
+            <div className="lib-menu">See all</div>
+          </div>
+          <div className="lib-section flex-row">
+            {[...watchLater]
               .reverse()
               .slice(0, 4)
               .map((item) => (
