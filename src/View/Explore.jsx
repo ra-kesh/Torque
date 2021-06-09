@@ -1,12 +1,8 @@
-// import ReactPlayer from "react-player/youtube";
-// import { useNavigate } from "react-router-dom";
-// import { useUserRelatedData } from "../Hook/useUserRelatedData";
 import { ThumbnailPlayer } from "../Components";
+import { useNavigate } from "react-router-dom";
 
 function Explore({ setVideoList, videoList }) {
-  // const { dispatch, } = useUserRelatedData();
-
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   let timer = 0;
 
@@ -35,20 +31,29 @@ function Explore({ setVideoList, videoList }) {
     clearTimeout(timer);
   }
 
-  // function isinHistory(id) {
-  //   return history.some((item) => item._id === id);
-  // }
-
   return (
     <div className="container">
       <div className="flex-row">
         {videoList.map((video) => (
-          <ThumbnailPlayer
+          <div
+            className="flex-col-lg-4 flex-col-md-6 container video-card"
             key={video._id}
-            video={video}
-            handlePause={handlePause}
-            handlePlay={handlePlay}
-          />
+          >
+            <ThumbnailPlayer
+              key={video._id}
+              video={video}
+              handlePause={handlePause}
+              handlePlay={handlePlay}
+            />
+            <div className="card-name">
+              <h5
+                onClick={() => navigate(`/videos/${video._id}`)}
+                className="pointer"
+              >
+                {video.name}
+              </h5>
+            </div>
+          </div>
         ))}
       </div>
     </div>

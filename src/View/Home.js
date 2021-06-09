@@ -46,6 +46,7 @@ const Home = () => {
           <div className="container">
             <UnfinishedVideosPlayer
               unfinishedVideos={unfinishedVideos}
+              setUnfinishedVideos={setUnfinishedVideos}
               watchUnfinishedHandeller={watchUnfinishedHandeller}
             />
           </div>

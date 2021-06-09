@@ -1,7 +1,6 @@
 .video-card {
-    margin: 0 0 5rem;
+    margin: 0 0 6rem;
     overflow: hidden;
-
 }
 
 .player-wrapper {
@@ -46,20 +45,18 @@
     transform: scale(1.4);
 }
 
+.detail-player {
+    border-bottom: 1px solid grey;
+    height: 70vh;
+}
 
+.video-buttons {
+    display: flex;
+    justify-content: space-around;
+    color: grey;
+    width: 100%;
+}
 
-  .detail-player {
-      border-bottom: 1px solid grey;
-      height: 70vh;
-  }
-
-  .video-buttons {
-      display: flex;
-      justify-content: space-around;
-      color: grey;
-      width: 100%;
-  }
-
-  .video-details {
-      padding: 0 2rem;
-  }
+.video-details {
+    padding: 0 2rem;
+}

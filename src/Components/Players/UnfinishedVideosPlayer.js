@@ -1,30 +1,35 @@
 export default function UnfinishedVideosPlayer({
   unfinishedVideos,
   watchUnfinishedHandeller,
+  setUnfinishedVideos,
 }) {
+  console.log(unfinishedVideos);
+
   return (
     <div className="unfinished-videos">
       <div className="flex-row">
-        {unfinishedVideos.map((item) => (
-          <div className="flex-col-4">
-            <div
-              className="small-video-card flex"
-              onClick={() =>
-                watchUnfinishedHandeller(item.elapsedTime, item.video._id)
-              }
-            >
+        {unfinishedVideos.map(({ video, elapsedTime, remainingTime }) => (
+          <div className="flex-col-4" key={video._id}>
+            <div className="small-video-card flex">
               <div className="small-card-img">
                 <img
-                  src={`https://img.youtube.com/vi/${item.video.youtubeId}/mqdefault.jpg`}
+                  src={`https://img.youtube.com/vi/${video.youtubeId}/mqdefault.jpg`}
                   alt=""
                 />
               </div>
               <div className="small-card-desc flex-dir-col">
-                <span className="small-card-title m-bottom">
-                  {item.video.name}
+                <span
+                  className="small-card-title m-bottom pointer"
+                  onClick={() =>
+                    watchUnfinishedHandeller(elapsedTime, video._id)
+                  }
+                >
+                  {video.name}
                 </span>
                 <span className="small-card-time">
-                  {item.remainingTime} minute left
+                  {remainingTime <= 0
+                    ? "less than 1 mintue left"
+                    : `${remainingTime} minute left`}
                 </span>
               </div>
             </div>

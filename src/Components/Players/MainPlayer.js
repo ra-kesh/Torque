@@ -25,13 +25,13 @@ export const MainPlayer = ({ currentVideo, playListHandeller }) => {
   };
 
   const completeHandeller = ({ played }) => {
-    if (played <= 0.8 && !isInUnfinishedVideos(currentVideo._id)) {
+    if (played <= 0.9 && !isInUnfinishedVideos(currentVideo._id)) {
       addToUnfinishedVideos(currentVideo._id, duration, played);
     }
-    if (played <= 0.8 && isInUnfinishedVideos(currentVideo._id)) {
+    if (played <= 0.9 && isInUnfinishedVideos(currentVideo._id)) {
       updateUnfinishedVideos(currentVideo._id, duration, played);
     }
-    if (played >= 0.8 && isInUnfinishedVideos(currentVideo._id)) {
+    if (played >= 0.9 && isInUnfinishedVideos(currentVideo._id)) {
       removeFromUnfinshedVideos(currentVideo._id);
     }
   };
