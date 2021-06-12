@@ -12,7 +12,7 @@ export const NavBar = () => {
         <div className="flex-row">
           <div className="flex-col-lg-2">
             <div className="nav-brand container">
-              <h3>Torque TV</h3>
+              <h3>Torque </h3>
             </div>
           </div>
           <div className="flex-col-lg-9 flex align-center  ">
