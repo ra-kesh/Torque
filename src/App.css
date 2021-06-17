@@ -1,6 +1,12 @@
-/* .App{
-    background-color: black;
+
+/* .content-container{
+    margin-top: 5rem;
+    margin-left: 15rem;
 } */
+
+.content-div{
+    margin-left: 15rem;
+}
 
 .nav-link{
     list-style: none;

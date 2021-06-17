@@ -1,0 +1,61 @@
+.sidebar-wrapper{
+     position: fixed;
+     top: 5;
+     left: 0;
+     height: 100vh;
+     width: 240px;
+     overflow: auto;
+     z-index: 2;
+     transition: all 0.3s;
+
+     /* padding-top: 1rem;
+     
+     padding-bottom: 1.5rem;
+   
+     font-size: 1rem; */
+}
+
+
+
+/* .sidebar-menu{
+      transition-duration: 0.2s;
+      overflow-y: auto;
+      overflow-x: hidden;
+} */
+
+
+.sidebar-menu:hover,
+.sidebar-menu.is-active {
+    color: #fff;
+    font-weight: 600;
+}
+
+/* 
+.sidebar-menu:hover:nth-child(2n+1) svg,
+.sidebar-menu.is-active:nth-child(2n+1) svg {
+    background: #ff7551;
+}
+
+.sidebar-menu:hover:nth-child(2n) svg,
+.sidebar-menu.is-active:nth-child(2n) svg {
+    background: #32a7e2;
+}
+
+.sidebar-menu:hover:nth-child(2n+3) svg,
+.sidebar-menu.is-active:nth-child(2n+3) svg {
+    background: #6c5ecf;
+} */
+
+
+.sidebar-menu svg {
+    width: 30px;
+    padding: 8px;
+    border-radius: 10px;
+    background-color: var(--button-bg);
+    flex-shrink: 0;
+    margin-right: 16px;
+}
+
+.sidebar-menu svg:hover {
+    color: #fff;
+}

@@ -32,7 +32,7 @@ function Explore({ setVideoList, videoList }) {
   }
 
   return (
-    <div className="container">
+    <div className="container-fluid">
       <div className="flex-row">
         {videoList.map((video) => (
           <div

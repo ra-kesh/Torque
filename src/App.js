@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import { NavBar } from "./Components";
+import { NavBar, Sidebar, Content } from "./Components";
 import { useEffect, useState } from "react";
 import { useVideoData } from "./Hook";
 import {
@@ -26,20 +26,26 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/user" element={<UserData />} />
-        <Route path="/library" element={<Library />} />
-        <Route
-          path="/explore"
-          element={
-            <Explore setVideoList={setVideoList} videoList={videoList} />
-          }
-        />
-        <Route path="/videos/:videoId" element={<VideoDetail />} />
-      </Routes>
+      <Sidebar />
+      {/* <Content> */}
+      <div className="content-div">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/user" element={<UserData />} />
+          <Route path="/library" element={<Library />} />
+          <Route
+            path="/explore"
+            element={
+              <Explore setVideoList={setVideoList} videoList={videoList} />
+            }
+          />
+          <Route path="/videos/:videoId" element={<VideoDetail />} />
+        </Routes>
+      </div>
+      {/* </Content> */}
     </div>
   );
 }

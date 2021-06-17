@@ -36,12 +36,12 @@ const Home = () => {
   }
 
   return (
-    <div className="container">
+    <div className="container-fluid">
       <div className="flex-row">
-        <div className="flex-col-lg-12">
+        <div className="flex-col-lg-11">
           <VideoSlider slides={sliderData} />
         </div>
-        <div className="flex-col-lg-12">
+        <div className="flex-col-lg-11">
           <h4>Continue Watching</h4>
           <div className="container">
             <UnfinishedVideosPlayer
@@ -51,6 +51,9 @@ const Home = () => {
             />
           </div>
         </div>
+        {/* <div className="flex-col-lg-9">
+          <div className="container"></div>
+        </div> */}
       </div>
     </div>
   );
