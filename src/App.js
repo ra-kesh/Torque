@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import { NavBar, Sidebar, Content } from "./Components";
+import { NavBar, Sidebar } from "./Components";
 import { useEffect, useState } from "react";
 import { useVideoData } from "./Hook";
 import {
@@ -27,7 +27,6 @@ function App() {
     <div className="App">
       <NavBar />
       <Sidebar />
-      {/* <Content> */}
       <div className="content-div">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -45,7 +44,6 @@ function App() {
           <Route path="/videos/:videoId" element={<VideoDetail />} />
         </Routes>
       </div>
-      {/* </Content> */}
     </div>
   );
 }
