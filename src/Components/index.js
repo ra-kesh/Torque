@@ -7,11 +7,9 @@ import ThumbnailPlayer from "./Players/ThumbnailPlayer";
 import { ThumbNailPlayerMini } from "./Players/ThumbNailPlayerMini";
 import UnfinishedVideosPlayer from "./Players/UnfinishedVideosPlayer";
 import { Sidebar } from "./Sidebar/Sidebar";
-import { Content } from "./Content";
 
 export {
   NavBar,
-  Content,
   Sidebar,
   VideoSlider,
   PlayList,
