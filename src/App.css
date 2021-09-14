@@ -2,35 +2,25 @@
     background-color: black;
 } */
 
-.nav-link{
-    list-style: none;
-    color: grey;
-    display: inline-block;
-    margin-right: 1rem;
-    font-size: 1.1rem;
+.small-card-img {
+  width: 15rem;
+  position: relative;
 }
 
-.small-card-img{
-    width: 15rem;
-    position: relative;
-
+.small-card-img img {
+  width: 100%;
+  height: 100%;
 }
 
-.small-card-img img{
-    width: 100%;
-    height: 100%;
+.small-card-desc {
+  color: gray;
+  padding: 0 1rem;
 }
 
-.small-card-desc{
-    color: gray;
-    padding: 0 1rem
+.small-card-title {
+  font-size: 1.3rem;
 }
 
-.small-card-title{
-    font-size: 1.3rem;
+.small-card-time {
+  font-size: 1rem;
 }
-
-.small-card-time{
-    font-size: 1rem;
-}
-

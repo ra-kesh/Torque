@@ -4,7 +4,7 @@ export default function SliderPlayer({ slide }) {
   return (
     <div className="slider-player">
       <ReactPlayer
-        // url={`https://www.youtube.com/watch?v=${slide.id}`}
+        url={`https://www.youtube.com/watch?v=${slide.id}`}
         width="120%"
         config={{
           youtube: {

@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Hook";
 
 const Signup = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [name, setName] = useState("something");
+  const [email, setEmail] = useState("something@gmail.com");
+  const [password, setPassword] = useState("something");
+  const [confirmPassword, setConfirmPassword] = useState("something");
 
   const navigate = useNavigate();
 
@@ -15,7 +15,7 @@ const Signup = () => {
   function submitHandeller(e) {
     e.preventDefault();
     if (password === confirmPassword) {
-      signup(name, password, email);
+      signup(name, email, password);
     }
   }
 

@@ -1,4 +1,28 @@
-import { v4 } from "uuid";
+const addToPlayList = (state, videoId, playlistId) => ({
+  ...state,
+  allPlayLists: state.allPlayLists.map((playlistItem) => {
+    return playlistItem._id === playlistId
+      ? {
+          ...playlistItem,
+          playListVideos: [...playlistItem.playListVideos, videoId],
+        }
+      : playlistItem;
+  }),
+});
+
+const removeFromPlayList = (state, videoId, playlistId) => ({
+  ...state,
+  allPlayLists: state.allPlayLists.map((playlistItem) => {
+    return playlistItem._id === playlistId
+      ? {
+          ...playlistItem,
+          playListVideos: playlistItem.playListVideos.filter(
+            (videoItem) => videoItem !== videoId
+          ),
+        }
+      : playlistItem;
+  }),
+});
 
 export const userReducer = (state, { type, payload }) => {
   switch (type) {
@@ -18,6 +42,9 @@ export const userReducer = (state, { type, payload }) => {
 
     case "GET UNFINISHED VIDEOS":
       return { ...state, unfinishedVideos: payload };
+
+    case "GET ALL PLAYLISTS":
+      return { ...state, allPlayLists: payload };
 
     case "ADD TO UNFINISHED VIDEOS":
       return {
@@ -79,58 +106,51 @@ export const userReducer = (state, { type, payload }) => {
         ),
       };
 
-    case "ADD PLAYLIST":
+    case "UPDATE_PLAYLIST_NAME":
       return {
         ...state,
-        playLists: state.playLists.concat({
-          id: v4(),
-          name: payload,
-          videos: [],
-        }),
-      };
-
-    case "REMOVE PLAYLIST":
-      return {
-        ...state,
-        playLists: state.playLists.filter(
-          (playList) => playList.id !== payload.id
+        allPlayLists: state.allPlayLists.map((playlistItem) =>
+          playlistItem._id === payload._id
+            ? { ...playlistItem, playListName: payload.playListName }
+            : playlistItem
         ),
       };
-
-    case "UPDATE PLAYLIST":
+    case "DELETE_PLAYLIST":
       return {
         ...state,
-        playLists: state.playLists.map((playList) =>
-          playList.id === payload.id
-            ? { ...playList, name: payload.newName }
-            : playList
+        allPlayLists: state.allPlayLists.filter(
+          (playlistItem) => playlistItem._id !== payload.playlistId
         ),
       };
-
-    case "ADD TO PLAYLIST":
+    case "CLEAR_PLAYLISTS":
       return {
         ...state,
-        playLists: state.playLists.map((playList) =>
-          playList.id === payload.id
-            ? { ...playList, videos: playList.videos.concat(payload.video) }
-            : playList
-        ),
+        allPlayLists: [],
       };
 
-    case "REMOVE FROM PLAYLIST":
+    case "CREATE_PLAYLIST":
       return {
         ...state,
-        playLists: state.playLists.map((playList) =>
-          playList.id === payload.id
-            ? {
-                ...playList,
-                videos: playList.videos.filter(
-                  (video) => video.id !== payload.video.id
-                ),
-              }
-            : playList
-        ),
+        allPlayLists: [
+          ...state.allPlayLists,
+          {
+            _id: payload._id,
+            playListName: payload.playListName,
+            playListVideos: [payload.videoId],
+          },
+        ],
       };
+
+    case "ADD OR REMOVE TO PLAYLIST":
+      const currentPlayList = state.allPlayLists.find(
+        (playListItem) => playListItem._id === payload.playListId
+      );
+      const isInPlayList = currentPlayList.playListVideos.find(
+        (videoItem) => videoItem === payload.videoId
+      );
+      return isInPlayList
+        ? removeFromPlayList(state, payload.videoId, payload.playListId)
+        : addToPlayList(state, payload.videoId, payload.playListId);
 
     default:
       break;
@@ -143,11 +163,5 @@ export const initialState = {
   history: [],
   watchLater: [],
   unfinishedVideos: [],
-  playLists: [
-    {
-      id: v4(),
-      name: "Initial List",
-      videos: [],
-    },
-  ],
+  allPlayLists: [],
 };

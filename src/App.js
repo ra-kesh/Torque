@@ -12,6 +12,7 @@ import {
   UserData,
   Library,
 } from "./View";
+import { PrivateRoute } from "./utils/PrivateRoute";
 
 function App() {
   const { videos } = useVideoData();
@@ -27,11 +28,14 @@ function App() {
     <div className="App">
       <NavBar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={<Home videoList={videoList} setVideoList={setVideoList} />}
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/user" element={<UserData />} />
-        <Route path="/library" element={<Library />} />
+        <PrivateRoute path="/user" element={<UserData />} />
+        <PrivateRoute path="/library" element={<Library />} />
         <Route
           path="/explore"
           element={

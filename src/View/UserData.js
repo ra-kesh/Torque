@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useAuth } from "../Hook";
 import { useNavigate } from "react-router-dom";
 
@@ -6,12 +5,12 @@ const UserData = () => {
   const { logout, userInfo } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!userInfo) {
-      navigate("/login");
-      return;
-    }
-  }, [userInfo, navigate]);
+  // useEffect(() => {
+  //   if (!userInfo) {
+  //     navigate("/login");
+  //     return;
+  //   }
+  // }, [userInfo, navigate]);
 
   return (
     <div>

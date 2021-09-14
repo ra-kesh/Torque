@@ -34,7 +34,7 @@ function Explore({ setVideoList, videoList }) {
   return (
     <div className="container">
       <div className="flex-row">
-        {videoList.map((video) => (
+        {videoList?.map((video) => (
           <div
             className="flex-col-lg-4 flex-col-md-6 container video-card"
             key={video._id}

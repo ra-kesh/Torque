@@ -1,0 +1,55 @@
+.playlistWrapper {
+  min-height: 10rem;
+  display: block;
+  position: absolute;
+  right: 0;
+  padding: 0 1rem;
+  z-index: 1;
+  background-color: var(--color-gray-900);
+  border: 1px solid var(--color-gray-700);
+}
+
+.playlistMenuItem {
+  padding: 0.5rem 0;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  margin: 0 0.25rem;
+}
+
+.newPlaylistInput {
+  border: 1px solid var(--color-gray-700);
+  padding: 0.5rem 1rem;
+  width: 100%;
+  max-width: 80%;
+  color: var(--color-gray-600);
+}
+
+.newPlaylistInput:focus {
+  box-shadow: none;
+}
+
+.playlist-btn {
+  padding: 0.2rem 0.6rem;
+  margin-left: 0.5rem;
+  background-color: var(--color-gray-700);
+}
+
+.playlist-btn:hover {
+  background-color: var(--color-gray-800);
+}
+.videoDetail-name {
+  font-size: 2rem;
+  color: var(--color-gray-600);
+  padding: 2rem 0;
+}
+
+.videoDetail-name:hover {
+  color: var(--color-gray-400);
+}
+
+.videoDetail-desc {
+  border-top: 1px solid var(--color-gray-700);
+  font-size: 1.2rem;
+  padding: 2rem 0;
+}

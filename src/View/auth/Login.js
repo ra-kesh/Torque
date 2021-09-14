@@ -4,8 +4,8 @@ import { useAuth } from "../../Hook";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("something@gmail.com");
+  const [password, setPassword] = useState("something");
 
   const location = useLocation();
   const path = location.state?.from;

@@ -19,6 +19,7 @@ export const UserProvider = ({ children }) => {
           const {
             data: { data: user },
           } = await axios.get(`${apiUrl}/userdata/${userInfo._id}`);
+
           dispatch({
             type: "GET HISTORY VIDEOS",
             payload: user.historyVideos,
@@ -34,6 +35,10 @@ export const UserProvider = ({ children }) => {
           dispatch({
             type: "GET UNFINISHED VIDEOS",
             payload: user.unfinishedVideos,
+          });
+          dispatch({
+            type: "GET ALL PLAYLISTS",
+            payload: user.allPlayLists,
           });
           dispatch({ type: "HIDE LOADING" });
         } catch (err) {

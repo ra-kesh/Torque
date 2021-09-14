@@ -1,4 +1,4 @@
-import { NavBar } from "./NavBar";
+import { NavBar } from "./Nav/NavBar";
 import { VideoSlider } from "./Sliders/VideoSlider";
 import { PlayList } from "./PlayList";
 import { MainPlayer } from "./Players/MainPlayer";

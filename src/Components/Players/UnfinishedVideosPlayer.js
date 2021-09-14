@@ -7,9 +7,9 @@ export default function UnfinishedVideosPlayer({
 
   return (
     <div className="unfinished-videos">
-      <div className="flex-row">
+      <div className="flex-row ">
         {unfinishedVideos.map(({ video, elapsedTime, remainingTime }) => (
-          <div className="flex-col-4" key={video._id}>
+          <div className="flex-col-lg-4" key={video._id}>
             <div className="small-video-card flex">
               <div className="small-card-img">
                 <img

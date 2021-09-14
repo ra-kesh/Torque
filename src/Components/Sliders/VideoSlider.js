@@ -2,6 +2,7 @@ import React from "react";
 import SliderDesc from "./SliderDesc";
 import SliderPlayer from "./SliderPlayer";
 import SliderControl from "./SliderControl";
+import MediaQuery from "react-responsive";
 
 export const VideoSlider = ({ slides }) => {
   const [current, setCurrent] = React.useState(0);
@@ -27,7 +28,9 @@ export const VideoSlider = ({ slides }) => {
                   {index === current && <SliderPlayer slide={slide} />}
                 </div>
                 <div className="flex-col-lg-6">
-                  {index === current && <SliderDesc slide={slide} />}
+                  <MediaQuery minWidth={992}>
+                    {index === current && <SliderDesc slide={slide} />}
+                  </MediaQuery>
                 </div>
               </div>
             </div>
