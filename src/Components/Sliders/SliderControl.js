@@ -1,8 +1,14 @@
+import { NavigateBefore, NavigateNext } from "@material-ui/icons";
+
 export default function SliderControl({ prevHandeller, nextHandeller }) {
   return (
-    <div>
-      <button onClick={prevHandeller}>prev</button>
-      <button onClick={nextHandeller}>next</button>
+    <div className="m-top-two">
+      <button onClick={prevHandeller} className="icon-btn">
+        <NavigateBefore />
+      </button>
+      <button onClick={nextHandeller} className="icon-btn">
+        <NavigateNext />
+      </button>
     </div>
   );
 }

@@ -9,6 +9,7 @@ const Library = () => {
   const [history, setHistory] = useState([]);
   const [likedVideos, setLikedVideos] = useState([]);
   const [watchLater, setWatchlater] = useState([]);
+  const [playLists, setPlayLists] = useState([]);
 
   useEffect(() => {
     if (userInfo) {
@@ -55,6 +56,23 @@ const Library = () => {
     }
   }, [userInfo]);
 
+  useEffect(() => {
+    if (userInfo) {
+      (async () => {
+        try {
+          const { data } = await axios.get(
+            `${apiUrl}/playlists/${userInfo._id}`
+          );
+          setPlayLists(data.allPlayListsOfUser || []);
+        } catch (error) {
+          console.log(error);
+        }
+      })();
+    }
+  }, [userInfo]);
+
+  console.log(playLists);
+
   return (
     <div className="container">
       <div className="flex-row lib-wrapper">
@@ -68,7 +86,7 @@ const Library = () => {
               .reverse()
               .slice(0, 4)
               .map((item) => (
-                <ThumbNailPlayerMini item={item} key={item.video?._id} />
+                <ThumbNailPlayerMini item={item.video} key={item.video?._id} />
               ))}
           </div>
         </div>
@@ -82,7 +100,7 @@ const Library = () => {
               .reverse()
               .slice(0, 4)
               .map((item) => (
-                <ThumbNailPlayerMini item={item} key={item.video?._id} />
+                <ThumbNailPlayerMini item={item.video} key={item.video?._id} />
               ))}
           </div>
         </div>
@@ -96,9 +114,24 @@ const Library = () => {
               .reverse()
               .slice(0, 4)
               .map((item) => (
-                <ThumbNailPlayerMini item={item} key={item.video?._id} />
+                <ThumbNailPlayerMini item={item.video} key={item.video?._id} />
               ))}
           </div>
+        </div>
+        <div className="flex-col-12">
+          {playLists.map((item) => (
+            <>
+              <div className="lib-bar flex space-between m-bottom-two">
+                <div className="lib-menu">{item.playListName}</div>
+                <div className="lib-menu">See all</div>
+              </div>
+              <div className="lib-section flex-row">
+                {item.playListVideos.map((item) => (
+                  <ThumbNailPlayerMini item={item} key={item._id} />
+                ))}
+              </div>
+            </>
+          ))}
         </div>
       </div>
     </div>

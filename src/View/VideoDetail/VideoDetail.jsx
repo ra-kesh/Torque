@@ -126,7 +126,7 @@ const VideoDetail = () => {
                         }
                         type="text"
                       />
-                      <button className="playlist-btn">
+                      <button className="icon-btn">
                         <Add />
                       </button>
                     </form>

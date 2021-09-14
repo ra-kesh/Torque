@@ -163,6 +163,10 @@ button:focus {
   margin-bottom: 2rem;
 }
 
+.p-one {
+  padding: 1rem;
+}
+
 /* .container, .container-sm, .container-md , .container-lg{
     max-width: 1200px;
     padding: 0 1rem;

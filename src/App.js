@@ -3,15 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { NavBar } from "./Components";
 import { useEffect, useState } from "react";
 import { useVideoData } from "./Hook";
-import {
-  Explore,
-  Home,
-  VideoDetail,
-  Login,
-  Signup,
-  UserData,
-  Library,
-} from "./View";
+import { Explore, Home, VideoDetail, Login, Signup, Library } from "./View";
 import { PrivateRoute } from "./utils/PrivateRoute";
 
 function App() {
@@ -34,7 +26,6 @@ function App() {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <PrivateRoute path="/user" element={<UserData />} />
         <PrivateRoute path="/library" element={<Library />} />
         <Route
           path="/explore"

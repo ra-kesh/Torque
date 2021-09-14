@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuth } from "../../Hook";
 import { useNavigate } from "react-router-dom";
+import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 
 export const NavBar = () => {
   const { userInfo, logout } = useAuth();
@@ -26,8 +27,13 @@ export const NavBar = () => {
                 Library
               </li>
               {userInfo ? (
-                <li className="nav-link" onClick={() => navigate("/user")}>
-                  {userInfo.name}
+                <li className="nav-link ">
+                  <div className="flex align-center">
+                    <span className=" m-right">{userInfo.name}</span>
+                    <div className="flex align-center" onClick={() => logout()}>
+                      <PowerSettingsNewIcon />
+                    </div>
+                  </div>
                 </li>
               ) : (
                 <li className="nav-link" onClick={() => navigate("/login")}>
