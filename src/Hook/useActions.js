@@ -12,10 +12,11 @@ export const useActions = () => {
     watchLater,
     unfinishedVideos,
   } = useUserRelatedData();
+
   const navigate = useNavigate();
 
-  const isinHistory = (id) => {
-    return history?.some(({ video }) => video === id);
+  const isinHistory = (_id) => {
+    return history?.some(({ video }) => video === _id);
   };
   const isLiked = (id) => {
     return likedVideos?.some(({ video }) => video === id);

@@ -7,21 +7,26 @@ import { useLocation } from "react-router-dom";
 export const MainPlayer = ({ currentVideo, playListHandeller }) => {
   const {
     addToHistory,
+    removeFromHistory,
     isinHistory,
     isInUnfinishedVideos,
     addToUnfinishedVideos,
     updateUnfinishedVideos,
     removeFromUnfinshedVideos,
   } = useActions();
+
+  console.log(isinHistory(currentVideo._id));
+
   const [duration, setDuration] = useState(null);
 
   const location = useLocation();
   const elapsedTime = location.state?.elapsedTime;
 
   const historyHandler = (_id) => {
-    if (!isinHistory(_id)) {
-      addToHistory(_id);
+    if (isinHistory(_id)) {
+      removeFromHistory(_id);
     }
+    addToHistory(_id);
   };
 
   const completeHandeller = ({ played }) => {

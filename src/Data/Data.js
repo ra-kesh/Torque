@@ -50,39 +50,27 @@ export const videoData = [
 ];
 export const sliderData = [
   {
-    id: "UyW8FdzH9dg",
-    name: "Tom cruise test drives RedBull F1 car",
+    id: "cM4YrRjKVUc",
+    name: "How to U-turn a motorcycle and make it look easy",
     playing: false,
-    desc: "Red Bull invited Tom Cruise to take a break from production of his new movie, Mission: Impossible Ghost Protocol, to pilot the Red Bull Racing F1 car through Southern California's 2.5-mile (4km) Willow Springs circuit.",
+    desc: "This detailed tutorial on how to ride tight u turns on any motorcycle is taught by a 24 year veteran of the motorcycle training industry. A veteran in instructor for Police, Military and civilians, domestic and international. Sit back and listen to details and explanations that will truly help you ",
   },
   {
-    id: "fS8Ezkxwn5g",
-    name: "The Rules of Formula One 1 - F1 - EXPLAINED!",
+    id: "oOD9NnTevH0",
+    name: "Easy to Expert Motorcycle Mounting & Dismounting Techniques - Petite Rider on a Big ADV Bike / Tips",
     playing: false,
-    desc: "Ninh explains - The Rules of Formula One (F1). The most popular form of single seat auto car racing in the world. Watch this short beginner’s tutorial video guide on how Formula 1 is raced, F1 rules, and how to to understand the races at a Formula One Grand Prix",
+    desc: "There's more than one way to get on and off your motorcycle, and more than a few reasons to learn them all. ",
   },
   {
-    id: "6OLVFa8YRfM",
-    name: "The Insane Logistics of Formula 1",
+    id: "CQO6grJYmOg",
+    name: "5 tips for short riders",
     playing: false,
-    desc: "Red Bull invited Tom Cruise to take a break from production of his new movie, Mission: Impossible Ghost Protocol, to pilot the Red Bull Racing F1 car through Southern California's 2.5-mile (4km) Willow Springs circuit.",
+    desc: "Tips and riding techniques for short riders or riders with tall motorcycles. The focus is on ADV adventure bikes.",
   },
   {
-    id: "Lc0y7lgcvtk",
-    name: "Why Mercedes' F1 Car is Unbeatable",
+    id: "TY37ctp6ExI",
+    name: "How to jump a motorcycle!",
     playing: false,
-    desc: "Red Bull invited Tom Cruise to take a break from production of his new movie, Mission: Impossible Ghost Protocol, to pilot the Red Bull Racing F1 car through Southern California's 2.5-mile (4km) Willow Springs circuit.",
-  },
-  {
-    id: "g-NUz0pQC0I",
-    name: "Formula 1 For New Fans: The History Of F1 & Everything A New Fan Needs To Know EXPLAINED",
-    playing: false,
-    desc: "This is SPECIFICALLY designed for new Formula 1 fans who feel like there isn't a comprehensive explanation of F1 out there. I'll take you through a brief history and touch on important, and often un-explained topics. ",
-  },
-  {
-    id: "L6AeUB8mbc8",
-    name: "F1 2020 Beginners Guide (Updated Version)",
-    playing: false,
-    desc: "Wether you are an F1 noob or just looking to learn more about the sport this F1 2020 Beginners Guide is just for you. ",
+    desc: "In this chapter of the Pulsar Mania ABC of Stunting Series we teach you how to jump a motorcycle. ",
   },
 ];
