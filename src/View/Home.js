@@ -14,8 +14,6 @@ const Home = ({ videoList, setVideoList }) => {
   const [unfinishedVideos, setUnfinishedVideos] = useState([]);
   const { userInfo } = useAuth();
 
-  console.log(videoList);
-
   let timer = 0;
 
   function handlePlay(id) {
@@ -74,7 +72,7 @@ const Home = ({ videoList, setVideoList }) => {
         <div className="flex-col-lg-12">
           <VideoSlider slides={sliderData} />
         </div>
-        {userInfo && (
+        {userInfo && unfinishedVideos.length > 0 && (
           <div className="flex-col-lg-12">
             <div className="container">
               <h4>Continue Watching</h4>
@@ -108,7 +106,7 @@ const Home = ({ videoList, setVideoList }) => {
                   <div className="card-name">
                     <h5
                       onClick={() => navigate(`/videos/${video._id}`)}
-                      className="pointer"
+                      className="pointer video-card-name"
                     >
                       {video.name}
                     </h5>

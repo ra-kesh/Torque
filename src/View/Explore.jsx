@@ -48,7 +48,7 @@ function Explore({ setVideoList, videoList }) {
             <div className="card-name">
               <h5
                 onClick={() => navigate(`/videos/${video._id}`)}
-                className="pointer"
+                className="pointer video-card-name"
               >
                 {video.name}
               </h5>

@@ -18,22 +18,46 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar />
       <Routes>
         <Route
           path="/"
-          element={<Home videoList={videoList} setVideoList={setVideoList} />}
+          element={
+            <>
+              <NavBar />
+              <Home videoList={videoList} setVideoList={setVideoList} />
+            </>
+          }
         />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <PrivateRoute path="/library" element={<Library />} />
+        <PrivateRoute
+          path="/library"
+          element={
+            <>
+              {" "}
+              <NavBar />
+              <Library />
+            </>
+          }
+        />
         <Route
           path="/explore"
           element={
-            <Explore setVideoList={setVideoList} videoList={videoList} />
+            <>
+              <NavBar />
+              <Explore setVideoList={setVideoList} videoList={videoList} />
+            </>
           }
         />
-        <Route path="/videos/:videoId" element={<VideoDetail />} />
+        <Route
+          path="/videos/:videoId"
+          element={
+            <>
+              <NavBar />
+              <VideoDetail />
+            </>
+          }
+        />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </div>
   );

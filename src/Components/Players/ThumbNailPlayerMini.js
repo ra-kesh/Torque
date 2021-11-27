@@ -15,7 +15,10 @@ export const ThumbNailPlayerMini = ({ item }) => {
         />
       </div>
       <div className="card-name">
-        <h5 onClick={() => navigate(`/videos/${item._id}`)} className="pointer">
+        <h5
+          onClick={() => navigate(`/videos/${item._id}`)}
+          className="pointer video-card-name"
+        >
           {item?.name}
         </h5>
       </div>

@@ -1,66 +1,46 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Hook";
+import { useLocation, useNavigate } from "react-router-dom";
+import { SignUpForm } from "../../Components/Form/SignUpForm";
 
-const Signup = () => {
-  const [name, setName] = useState("something");
-  const [email, setEmail] = useState("something@gmail.com");
-  const [password, setPassword] = useState("something");
-  const [confirmPassword, setConfirmPassword] = useState("something");
-
+export const Signup = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const path = location.state?.from;
 
-  const { signup } = useAuth();
-
-  function submitHandeller(e) {
-    e.preventDefault();
-    if (password === confirmPassword) {
-      signup(name, email, password);
-    }
-  }
+  const { signup, loading, error } = useAuth();
 
   return (
-    <div className="container">
-      <div className="auth-wrapper center-vertically">
-        <div className="auth-form">
-          <form onSubmit={submitHandeller} className="login-form">
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Name"
-              className="m-bottom-two form-input"
-            />
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="email"
-              className="m-bottom-two form-input"
-            />
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="password"
-              className="m-bottom-two form-input"
-            />
-            <input
-              type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder="password"
-              className="m-bottom-two form-input"
-            />
-            <button>submit</button>
-          </form>
-          <div className="container center-vertically m-top-two">
-            <button onClick={() => navigate(-1)}>back</button>
+    <>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column",
+          }}
+        >
+          {error ? <h4>{error}</h4> : null}
+          {loading ? <h4>loading</h4> : null}
+
+          <div>
+            <SignUpForm path={path} signup={signup} />
+          </div>
+          <div style={{ width: "100%", paddingLeft: "40px" }}>
+            {" "}
+            Already have an account ?
+            <span className="auth-link" onClick={() => navigate("/login")}>
+              Log In
+            </span>{" "}
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
-
-export default Signup;

@@ -1,54 +1,48 @@
-import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import React from "react";
+import { LoginForm } from "../../Components/Form/LoginForm";
 import { useAuth } from "../../Hook";
+import { useNavigate, useLocation } from "react-router-dom";
 
-const Login = () => {
+export const Login = () => {
+  const { error, login, loading } = useAuth();
+
   const navigate = useNavigate();
-  const [email, setEmail] = useState("something@gmail.com");
-  const [password, setPassword] = useState("something");
-
   const location = useLocation();
+
   const path = location.state?.from;
+  const message = location.state?.message;
 
-  const { login } = useAuth();
-
-  function submitHandeller(e) {
-    e.preventDefault();
-    login(email, password, path);
-  }
   return (
-    <div className="container">
-      <div className="auth-wrapper center-vertically">
-        <div className="auth-form">
-          <form onSubmit={submitHandeller} className="login-form">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="email"
-              className="m-bottom-two form-input"
-            />
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="password"
-              className="m-bottom-two form-input"
-            />
-            <button>submit</button>
-          </form>
-          <div className="container flex space-evenly m-top-two">
-            <div>
-              <h5>New Here ? Wanna Signup ..</h5>
-            </div>
-            <div className="center-vertically">
-              <button onClick={() => navigate("/signup")}>signup</button>
-            </div>
-          </div>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        {error && <h4>{error}</h4>}
+        {loading && <h4>loading</h4>}
+        {!loading && !error && message && <h4>{message}</h4>}
+
+        <div>
+          <LoginForm path={path} login={login} />
+        </div>
+        <div style={{ width: "100%", paddingLeft: "40px" }}>
+          {" "}
+          Don't have an account ?
+          <span className="auth-link" onClick={() => navigate("/signup")}>
+            SIGN UP
+          </span>{" "}
         </div>
       </div>
     </div>
   );
 };
-
-export default Login;

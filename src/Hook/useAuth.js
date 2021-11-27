@@ -41,6 +41,7 @@ export const useAuth = () => {
             ? error.response.data.message
             : error.message,
       });
+      return;
     }
     // console.log(path);
     if (path !== undefined) {
@@ -82,6 +83,7 @@ export const useAuth = () => {
             ? error.response.data.message
             : error.message,
       });
+      return;
     }
     if (path !== undefined) {
       navigate(path, { replace: true });

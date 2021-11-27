@@ -24,3 +24,12 @@
 .small-card-time {
   font-size: 1rem;
 }
+
+.video-card-name {
+  font-size: larger;
+}
+
+.video-card-name:hover {
+  color: var(--color-gray-500);
+  font-weight: 800;
+}

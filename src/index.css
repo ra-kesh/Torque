@@ -1,6 +1,7 @@
 @import url("./main.css");
 @import url("./Components/Sliders/VideoSlider.css");
 @import url("./Components/Nav/NavBar.css");
+@import url("./Components/Form/Form.css");
 @import url("./View/auth/login.css");
 @import url("./View/Library/library.css");
 @import url("./View/VideoDetail/videoDetail.css");
