@@ -47,6 +47,27 @@ export const useActions = () => {
       }
     }
   };
+
+  const removeFromHistory = async (_id) => {
+    console.log(_id);
+    if (userInfo) {
+      const {
+        data: { success },
+      } = await axios.delete(`${apiUrl}/history/${userInfo._id}/${_id}`);
+
+      console.log(success);
+
+      if (success) {
+        userDataDispatch({
+          type: "REMOVE FROM HISTORY",
+          payload: {
+            video: _id,
+          },
+        });
+      }
+    }
+  };
+
   const addToUnfinishedVideos = async (_id, duration, played) => {
     if (userInfo) {
       const {
@@ -147,22 +168,6 @@ export const useActions = () => {
     });
   };
 
-  const removeFromHistory = async (_id) => {
-    if (userInfo) {
-      const {
-        data: { success },
-      } = await axios.delete(`${apiUrl}/history/${userInfo._id}/${_id}`);
-
-      if (success) {
-        userDataDispatch({
-          type: "REMOVE FROM HISTORY",
-          payload: {
-            video: _id,
-          },
-        });
-      }
-    }
-  };
   const removeFromLikedVideos = async (_id) => {
     if (userInfo) {
       const {
@@ -226,5 +231,6 @@ export const useActions = () => {
     removeFromUnfinshedVideos,
     isInUnfinishedVideos,
     updateUnfinishedVideos,
+    history,
   };
 };
