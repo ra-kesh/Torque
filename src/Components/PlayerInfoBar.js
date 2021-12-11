@@ -28,7 +28,7 @@ export const PlayerInfoBar = ({ currentVideo, playListHandeller }) => {
       </div>
       <div className="flex-col-lg-2 flex-col-md-2  center-vertically">
         <div className="video-buttons">
-          <div>
+          <div className="pointer">
             {!isLiked(currentVideo._id) ? (
               <ThumbUpOutlinedIcon
                 fontSize="large"
@@ -41,7 +41,7 @@ export const PlayerInfoBar = ({ currentVideo, playListHandeller }) => {
               />
             )}
           </div>
-          <div>
+          <div className="pointer">
             {!isInWatchLater(currentVideo._id) ? (
               <TurnedInNotIcon
                 fontSize="large"
@@ -54,7 +54,7 @@ export const PlayerInfoBar = ({ currentVideo, playListHandeller }) => {
               />
             )}
           </div>
-          <div onClick={playListHandeller}>
+          <div onClick={playListHandeller} className="pointer">
             <PlaylistAddIcon fontSize="large" />
           </div>
         </div>
