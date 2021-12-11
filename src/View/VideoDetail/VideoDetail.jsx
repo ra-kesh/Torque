@@ -4,7 +4,7 @@ import { useUserRelatedData } from "../../Hook/useUserRelatedData";
 import { useState, useEffect } from "react";
 import { apiUrl } from "../../Constants";
 import axios from "axios";
-import PlayListDetail from "../../Components/PlayListDetail";
+import PlayListDetail from "../../Components";
 
 const VideoDetail = () => {
   const [showPlayList, setShowPlayList] = useState(false);
